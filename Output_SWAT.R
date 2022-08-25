@@ -52,8 +52,7 @@ tab <- select(datos3, -V2,-V9,-GWC)
 tab1 <- melt(tab, id.vars = "Subcuencas", variable.name = "Parámetros", value.name = "Q_mmaño")
 
 # Guardar
-write.csv(tab,"D:/Qswat_cachi/Jonatan_tesis/Scenarios/Simulacion_Python/GWFBWF2075-2099.csv", quote = F)
-
+#write.csv(tab,"D:/Qswat_cachi/Jonatan_tesis/Scenarios/Simulacion_Python/GWFBWF2075-2099.csv", quote = F)
 #library(dplyr)
 tab2 <- tab1 %>% 
   mutate_if(is.numeric, round,0)
@@ -78,28 +77,20 @@ ggplot(data = tab2, mapping = aes(x = Subcuencas, y = Q_mmaño, fill = Parámetr
             position = position_stack(vjust = 0.5), size=2.6) 
 #scale_fill_manual(values=c("red", "blue", "green", "yellow", "gray70"))
 
-ggplot(data = tab2, mapping = aes(x = Subcuencas, y = Q_mmaño, colour = Parámetros, shape = Parámetros)) + 
-  geom_point() + geom_line() + geom_smooth(method = lm, se = FALSE, fullrange = TRUE) 
-
-#scatterplot
-ggplot(data = tab2, mapping = aes(x = Subcuencas, y = Q_mmaño, colour = Parámetros, shape = Parámetros)) + 
-  geom_point() + geom_line() + geom_smooth(method = lm, se = FALSE, fullrange = TRUE) 
-
 #boxplot
-ggplot(data = tab2, mapping = aes(x = Parámetros, y = Q_mmaño)) + geom_boxplot()
+p1 <- ggplot(data = tab2, mapping = aes(x = Parámetros, y = Q_mmaño)) + geom_boxplot()
 
-ggplot(data = tab2, mapping = aes(x = Parámetros, y = Q_mmaño)) +
+p1  +
   geom_boxplot(alpha = 0) +
   geom_jitter(alpha = 0.4, color = "red")+
   labs(title = "Comparación de diferentes parámetros anualmente (2075 - 2099)") 
 
-
+#boxplot1
 ggplot(data = tab2,
        mapping = aes(x = Subcuencas, y = Q_mmaño, color = Parámetros)) +
   geom_boxplot(fill="gray") +
   facet_wrap(vars(Parámetros)) +
   theme_bw()
-
 
 #boxplot2
 ggplot(data = tab2, mapping = aes(x = Subcuencas, y = Q_mmaño, color = Parámetros)) +
@@ -114,44 +105,4 @@ ggplot(data = tab2, mapping = aes(x = Subcuencas, y = Q_mmaño, color = Parámet
         strip.text = element_text(face = "italic"),
         text = element_text(size = 16))
 
-main_plot <- 
-  ggplot(tab2, aes(group=Parámetros)) + 
-  geom_point(aes(x=Subcuencas, y=Q_mmaño, colour=Parámetros), alpha=0.6) + 
-  facet_wrap(~Parámetros) +  ## plot each prize category separately 
-  theme_bw() +
-  labs(y="Age of prize winner", x="Year of award") + 
-  geom_smooth(aes(x=Subcuencas, y=Q_mmaño), method = "loess") + ## add a smoothed line
-  scale_y_continuous(limits=c(0,1000)) + 
-  scale_colour_discrete(breaks=c("Female","Male")) +
-  theme(panel.grid.major = element_blank(), 
-        panel.grid.minor = element_blank(), 
-        legend.position = "bottom",
-        legend.title = element_blank()) 
 
-main_plot
-
-get_inset <- function(df){
-  p <- ggplot(data=df %>% 
-                group_by(Parámetros, Subcuencas) %>% 
-                slice(1),
-              aes(x=Subcuencas, fill=Parámetros)) +
-    geom_bar() + 
-    scale_x_discrete( drop=FALSE) + 
-    scale_fill_manual(values = c("#00BF7D", "#A3A500", "#F8766D","#00B0F6","#E76BF3","#636363","#00B0F6","#E76BF3","#636363")) + 
-    guides(fill=FALSE) +
-    theme_bw(base_size=9) +  ## makes everything smaller
-    theme(panel.background = element_rect(fill="white"),  ## white plot background 
-          axis.title.y = element_blank(),
-          axis.title.x = element_blank(),
-          axis.text.x = element_text(size=rel(0.7)), ## tiny axis text
-          panel.grid.major = element_blank(),
-          panel.grid.minor = element_blank(),
-          plot.background = element_blank())
-  return(p)
-}
-inset_plot <- get_inset(tab2) 
-
-## Add it as an inset
-main_plot +
-  annotation_custom(grob=ggplotGrob(inset_plot), 
-                    ymin = 500, ymax=1000, xmin='Pongora', xmax='Yucaes')
