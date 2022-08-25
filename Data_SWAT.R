@@ -5,7 +5,7 @@
 #***************************************************************************************************#
 
 library(pacman)# cargar el paquete
-pacman::p_load(ggplot2,dplyr,lubridate,cowplot,ggthemes)
+pacman::p_load(ggplot2,dplyr,lubridate,cowplot,ggthemes)bbngng
 
 # ubicación de la data
 data <- read.csv(url('https://raw.githubusercontent.com/jonatanmoreno777/Output-SWAT-hydrological-model/main/Data/Data_SWAT.csv'))
