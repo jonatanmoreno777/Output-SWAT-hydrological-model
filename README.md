@@ -18,5 +18,8 @@ Antes de ejecutar este script, debe realizar algunos, **pasos**:
 ![Output_Cachi](https://user-images.githubusercontent.com/107366367/186157971-fe4de1b9-d2f1-4ddb-b223-1be071efbc2e.png)
 
 <!-- UL -->
-**Promedio anual_subcuencas**
-![Output_subcuencas](https://user-images.githubusercontent.com/107366367/186158005-e519af08-57a3-46b6-bff2-565c685fa5ec.png)
+**Promedio anual_boxplot**
+![Parámetros_SWAT](https://user-images.githubusercontent.com/107366367/186549121-234d9eb8-91fe-4d80-a17c-44208ee2dc01.png)
+
+**Promedio anual_parámetros**
+![Output_QSWAT_Data](https://user-images.githubusercontent.com/107366367/186549167-91316081-23a4-4aca-96ea-387fc18b6c61.png)
