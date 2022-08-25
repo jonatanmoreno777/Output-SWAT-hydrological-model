@@ -5,7 +5,7 @@
 #***************************************************************************************************#
 
 library(pacman)# cargar el paquete
-pacman::p_load(ggplot2,dplyr,lubridate,cowplot,ggthemes)bbngng
+pacman::p_load(ggplot2,dplyr,lubridate,cowplot,ggthemes)
 
 # ubicación de la data
 data <- read.csv(url('https://raw.githubusercontent.com/jonatanmoreno777/Output-SWAT-hydrological-model/main/Data/Data_SWAT.csv'))
@@ -74,19 +74,4 @@ p1 <- ggplot(tab1, aes(width = 0.9, fill=Parámetros, y=Q_mmaño, x=Subcuencas))
 ls("package:ggthemes")[grepl("theme_", ls("package:ggthemes"))]
 
 p1 + coord_flip() +theme_foundation(11)
-
-
-  
-
-
-
-                    
- 
-
-
-
-
-
-
-
 
