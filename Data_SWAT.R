@@ -1,9 +1,14 @@
+#***************************************************************************************************#
+#                      ANALISIS DE DATOS DE SALIDA DEL MODELO HIDROLOGICO SWAT    
+#                                (Soil & Water Assessment Tool)             
 
-library(pacman)#cargar el paquete
-pacman::p_load(ggplot2,dplyr,lubridate)######3kjhjj
+#***************************************************************************************************#
+
+library(pacman)# cargar el paquete
+pacman::p_load(ggplot2,dplyr,lubridate,cowplot,ggthemes)
 
 # ubicación de la data
-data <- read.csv(url('https://raw.githubusercontent.com/jonatanmoreno777/Output_SWAT/main/Data/Data_SWAT.csv'))
+data <- read.csv(url('https://raw.githubusercontent.com/jonatanmoreno777/Output-SWAT-hydrological-model/main/Data/Data_SWAT.csv'))
 class(data)
 
 tab1 <- melt(data, id=c("Decadas","Subcuencas"), variable.name = "Parámetros", value.name = "Q_mmaño")
