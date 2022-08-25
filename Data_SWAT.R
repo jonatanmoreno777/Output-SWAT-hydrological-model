@@ -14,7 +14,7 @@ class(data)
 tab1 <- melt(data, id=c("Decadas","Subcuencas"), variable.name = "Parámetros", value.name = "Q_mmaño")
 
 # boxplot
-main_plot <- 
+cachi_plot <- 
   ggplot(tab1, aes(group=Parámetros)) + 
   geom_point(aes(x=Decadas, y=Q_mmaño, colour=Parámetros), alpha=0.6) + 
   facet_wrap(~Parámetros) +  ## trazar cada categoría de parámetros por separado
@@ -30,7 +30,7 @@ main_plot <-
         legend.position = "bottom",
         legend.title = element_blank()) 
 
-main_plot
+cachi_plot
 
 # crear plot
 p1 <- ggplot(tab1, aes(width = 0.9, fill=Parámetros, y=Q_mmaño, x=Subcuencas)) +
@@ -54,7 +54,7 @@ p1 <- ggplot(tab1, aes(width = 0.9, fill=Parámetros, y=Q_mmaño, x=Subcuencas))
                                "BWF" = "#62f8fd",
                                "GWF" = "#62fd90"),
                     labels=c("PRECIP" = "Precipitación", 
-                             "ET" = "Evapotranspiración Real", 
+                             "ET" = "Evapotranspiración real", 
                              "SW" = "Humedad del suelo", 
                              "SURQ" = "Escorrentía superficial", 
                              "GW" = "Flujo de agua subterránea", 
